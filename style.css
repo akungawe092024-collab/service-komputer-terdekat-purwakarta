@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap');
 
 :root {
-    --dark-bg: #0a0a1a; 
-    --card-bg: #14142a; 
-    --neon-purple: #e040fb; 
-    --neon-shadow: 0 0 15px rgba(224, 64, 251, 0.6); 
+    --dark-bg: #0a0a1a; /* Latar belakang sangat gelap */
+    --card-bg: #14142a; /* Latar belakang kartu/kotak */
+    --neon-purple: #e040fb; /* Ungu neon cerah */
+    --neon-shadow: 0 0 15px rgba(224, 64, 251, 0.6); /* Shadow untuk glow */
     --text-light: #f0f0f0;
     --text-secondary: #b0b0b0;
     --transition-speed: 0.3s;
@@ -16,7 +16,7 @@
     --blog-color: #FF5722;
 }
 
-/* --- KEYFRAMES ANIMATION & UTILITY CLASSES (Dibiarkan sama) --- */
+/* --- KEYFRAMES ANIMATION --- */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -44,14 +44,96 @@ body {
     color: var(--text-light);
     line-height: 1.6;
     min-height: 100vh;
+    /* Default: Tengah untuk halaman login */
     display: flex; 
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-/* ... (Utility classes lainnya Dibiarkan Sama) ... */
 
-/* --- HEADER & LOGO --- */
+/* Saat konten utama ditampilkan, body tidak lagi dipaksa ke tengah */
+main:not(.hidden) ~ body { 
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* --- UTILITY CLASSES & NEON EFFECTS --- */
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.neon-highlight {
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px var(--neon-purple);
+    font-weight: 700;
+}
+
+.neon-title {
+    color: var(--neon-purple);
+    text-shadow: var(--neon-shadow);
+    font-size: 2.2em;
+    margin-bottom: 5px;
+}
+
+.neon-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+.small-text {
+    color: var(--text-secondary);
+    font-size: 0.8em;
+}
+
+/* --- TOMBOL NEON MODERN (Pill Shape & Glow) --- */
+.neon-button-modern {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--neon-purple);
+    color: var(--dark-bg);
+    border: 2px solid var(--neon-purple);
+    border-radius: 50px; 
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: var(--neon-shadow);
+    transition: all var(--transition-speed) ease;
+}
+
+.neon-button-modern:hover {
+    background: transparent;
+    color: var(--neon-purple);
+    box-shadow: 0 0 20px var(--neon-purple), 0 0 40px rgba(224, 64, 251, 0.4);
+    transform: translateY(-3px) scale(1.02);
+}
+
+.large-button {
+    font-size: 1.1em;
+    padding: 15px 35px;
+}
+
+/* --- HEADER & NAVIGASI --- */
+header {
+    background-color: rgba(10, 10, 26, 0.95); 
+    border-bottom: 1px solid rgba(224, 64, 251, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    transition: all var(--transition-speed);
+    flex-wrap: wrap; /* Penting untuk responsif */
+}
+
 header .logo {
     font-size: 1.5em;
     font-weight: 700;
@@ -63,16 +145,92 @@ header .logo i {
     color: var(--neon-purple);
 }
 
-/* --- ARTIKEL GRID (Gambar dan Waktu) --- */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-light);
+    padding: 8px 0;
+    transition: color var(--transition-speed), border-bottom var(--transition-speed);
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px rgba(224, 64, 251, 0.8);
+    border-bottom: 2px solid var(--neon-purple);
+}
+
+
+/* --- MAIN CONTENT & SECTIONS --- */
+main {
+    padding-top: 100px; 
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: block; 
+}
+
+.content-section {
+    padding: 40px 0;
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.section-title {
+    font-size: 2em;
+    color: var(--neon-purple);
+    text-shadow: 0 0 8px rgba(224, 64, 251, 0.4);
+    margin-bottom: 30px;
+    border-left: 4px solid var(--neon-purple);
+    padding-left: 15px;
+}
+
+/* Kartu / Kotak dengan Glow Border */
 .article-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
 }
 
-.article-item {
-    padding: 0; /* Hapus padding agar gambar di tepi */
+.article-card, .service-list li {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(224, 64, 251, 0.1);
+    transition: all var(--transition-speed);
+    position: relative;
     overflow: hidden;
+}
+
+.glow-border:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--neon-shadow), 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.article-card h3 {
+    color: var(--neon-purple);
+    margin-bottom: 10px;
+    text-shadow: 0 0 3px rgba(224, 64, 251, 0.4);
+}
+
+/* Gaya Khusus Artikel (Gambar dan Tanggal) */
+.article-item {
+    padding: 0; 
+    overflow: hidden;
+    height: 100%; /* Penting untuk grid yang rapi */
+    display: flex;
+    flex-direction: column;
 }
 
 .article-image {
@@ -87,18 +245,73 @@ header .logo i {
     transform: scale(1.05);
 }
 
-.article-item h3 {
+.article-item h3, .article-item p, .article-item a {
     padding: 0 25px;
-    margin-top: 15px;
 }
-.article-item p, .article-item a {
-    padding: 0 25px;
+
+.article-item h3 {
+    margin-top: 15px;
 }
 
 .article-date {
     color: var(--text-secondary);
     font-size: 0.75em;
     margin-bottom: 10px;
+}
+
+.read-more-link {
+    color: var(--text-light);
+    text-shadow: 0 0 1px var(--neon-purple);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: auto; /* Dorong link ke bawah */
+    margin-bottom: 15px;
+    transition: color var(--transition-speed);
+}
+
+/* Service List */
+.service-list li {
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.service-icon {
+    color: var(--neon-purple);
+    margin-right: 15px;
+    font-size: 1.2em;
+}
+
+/* --- HALAMAN LOGIN (Frosted Glass Effect) --- */
+#login-container {
+    background-color: rgba(20, 20, 42, 0.8); 
+    backdrop-filter: blur(8px); 
+    padding: 50px;
+    border-radius: 15px;
+    border: 1px solid rgba(224, 64, 251, 0.4);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    animation: pulseNeon 3s infinite alternate; 
+}
+
+.neon-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(224, 64, 251, 0.5);
+    color: #00ff41; /* Warna teks terminal hijau */
+    font-size: 1em;
+    border-radius: 5px;
+    transition: all var(--transition-speed);
+}
+
+.neon-input:focus {
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+    outline: none;
 }
 
 /* --- KONTAK LENGKAP (Tombol dan Maps) --- */
@@ -156,27 +369,70 @@ header .logo i {
 
 .map-container iframe {
     width: 100%;
-    height: 300px; /* Tinggi optimal untuk peta */
+    height: 300px; 
     border: 1px solid rgba(224, 64, 251, 0.4);
     border-radius: 5px;
 }
 
-/* --- MEDIA QUERIES (Responsif) --- */
-@media (max-width: 768px) {
-    /* ... (Aturan responsif sebelumnya) ... */
-    
-    .map-container iframe {
-        height: 200px; 
-    }
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #1e1e35;
+    color: var(--text-secondary);
 }
 
-@media (max-width: 480px) {
-    /* ... (Aturan responsif sebelumnya) ... */
+
+/* --- MEDIA QUERIES (Responsif: Optimasi Smartphone) --- */
+@media (max-width: 768px) {
+    
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+
+    header nav {
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    main {
+        padding-top: 150px; 
+    }
+
+    .main-title {
+        font-size: 2em;
+    }
+
+    .section-title {
+        font-size: 1.5em;
+    }
+    
+    .neon-button-modern, .large-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
 
     .social-buttons {
         flex-direction: column;
     }
     .social-button {
         width: 100%;
+    }
+    
+    .map-container iframe {
+        height: 200px; 
     }
 }
