@@ -1,35 +1,44 @@
-/* Import font untuk tampilan modern */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+/* Import font untuk tampilan "hacker/mono" */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap');
 
 :root {
-    --dark-bg: #f8f9fa; /* Latar belakang terang untuk kesan modern */
-    --light-bg: #ffffff;
-    --primary-color: #007bff; /* Biru cerah sebagai warna utama */
-    --primary-gradient: linear-gradient(45deg, #007bff, #00c6ff); /* Gradien hidup */
-    --secondary-color: #28a745; /* Hijau */
-    --text-dark: #343a40;
-    --text-secondary: #6c757d;
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 8px 25px rgba(0, 123, 255, 0.3);
+    --dark-bg: #0a0a1a; /* Latar belakang sangat gelap */
+    --card-bg: #14142a; /* Latar belakang kartu/kotak */
+    --neon-purple: #e040fb; /* Ungu neon cerah */
+    --neon-shadow: 0 0 15px rgba(224, 64, 251, 0.6); /* Shadow untuk glow */
+    --text-light: #f0f0f0;
+    --text-secondary: #b0b0b0;
+    --transition-speed: 0.3s;
+}
+
+/* --- KEYFRAMES ANIMATION --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseNeon {
+    0% { box-shadow: 0 0 10px rgba(224, 64, 251, 0.4); }
+    50% { box-shadow: 0 0 20px rgba(224, 64, 251, 0.8), 0 0 30px rgba(224, 64, 251, 0.4); }
+    100% { box-shadow: 0 0 10px rgba(224, 64, 251, 0.4); }
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif; /* Mengganti font */
+    font-family: 'Roboto Mono', monospace; 
 }
 
 body {
     background-color: var(--dark-bg);
-    color: var(--text-dark);
+    color: var(--text-light);
     line-height: 1.6;
     min-height: 100vh;
-    display: flex;
+    display: flex; 
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
 }
 
 /* --- UTILITY CLASSES --- */
@@ -37,17 +46,24 @@ body {
     display: none !important;
 }
 
-.modern-highlight {
-    color: var(--primary-color);
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.neon-highlight {
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px var(--neon-purple);
     font-weight: 700;
 }
 
-.modern-header {
-    color: var(--text-dark);
-    font-size: 2em;
+.neon-title {
+    color: var(--neon-purple);
+    text-shadow: var(--neon-shadow);
+    font-size: 2.2em;
+    margin-bottom: 5px;
 }
 
-.subtitle {
+.neon-subtitle {
     color: var(--text-secondary);
     font-size: 0.9em;
 }
@@ -57,37 +73,39 @@ body {
     font-size: 0.8em;
 }
 
-/* --- TOMBOL MODERN (Modern Button) --- */
-.modern-button {
+/* --- TOMBOL NEON MODERN (Pill Shape & Glow) --- */
+.neon-button-modern {
     display: inline-block;
-    padding: 12px 25px;
-    background: var(--primary-gradient);
-    color: var(--light-bg);
-    border: none;
-    border-radius: 8px;
+    padding: 12px 30px;
+    background: var(--neon-purple);
+    color: var(--dark-bg);
+    border: 2px solid var(--neon-purple);
+    border-radius: 50px; /* Bentuk Pill */
     font-weight: 600;
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
-    box-shadow: var(--shadow-light);
-    transition: all 0.3s ease;
+    box-shadow: var(--neon-shadow);
+    transition: all var(--transition-speed) ease;
 }
 
-.modern-button:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-2px);
+.neon-button-modern:hover {
+    background: transparent;
+    color: var(--neon-purple);
+    box-shadow: 0 0 20px var(--neon-purple), 0 0 40px rgba(224, 64, 251, 0.4);
+    transform: translateY(-3px) scale(1.02);
 }
 
 .large-button {
     font-size: 1.1em;
-    padding: 15px 30px;
+    padding: 15px 35px;
 }
 
 /* --- HEADER & NAVIGASI --- */
 header {
-    background-color: var(--light-bg);
-    border-bottom: 1px solid #e0e0e0;
-    box-shadow: var(--shadow-light);
+    background-color: rgba(10, 10, 26, 0.95); /* Sedikit transparan */
+    border-bottom: 1px solid rgba(224, 64, 251, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     width: 100%;
     padding: 15px 5%;
     display: flex;
@@ -96,178 +114,130 @@ header {
     position: fixed;
     top: 0;
     z-index: 100;
-    flex-wrap: wrap; /* Penting untuk responsif */
+    transition: all var(--transition-speed);
 }
 
-header .logo {
-    font-size: 1.5em;
-    font-weight: 800;
-    line-height: 1;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+header nav ul {
+    gap: 30px;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: var(--text-dark);
-    padding: 8px 0;
-    transition: color 0.3s, border-bottom 0.3s;
+    transition: color var(--transition-speed), border-bottom var(--transition-speed);
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-    color: var(--primary-color);
-    border-bottom: 3px solid var(--primary-color);
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px rgba(224, 64, 251, 0.8);
+    border-bottom: 2px solid var(--neon-purple);
 }
 
 
 /* --- MAIN CONTENT & SECTIONS --- */
 main {
-    padding-top: 100px; /* Offset header */
+    padding-top: 100px;
     width: 90%;
     max-width: 1200px;
     margin: auto;
-    display: block; 
-}
-
-.content-section {
-    padding: 40px 0;
-    margin-bottom: 20px;
 }
 
 .main-title {
     font-size: 3em;
-    color: var(--text-dark);
+    color: var(--text-light);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
     margin-bottom: 20px;
-    font-weight: 800;
-}
-
-.hero-text {
-    font-size: 1.25em;
-    color: var(--text-secondary);
-    margin-bottom: 30px;
+    font-weight: 700;
 }
 
 .section-title {
     font-size: 2em;
-    color: var(--primary-color);
+    color: var(--neon-purple);
+    text-shadow: 0 0 8px rgba(224, 64, 251, 0.4);
     margin-bottom: 30px;
-    border-left: 5px solid var(--primary-color);
+    border-left: 4px solid var(--neon-purple);
     padding-left: 15px;
 }
 
-/* Artikel Grid (untuk responsif) */
-.article-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
-
-.article-grid .card {
-    background-color: var(--light-bg);
+/* Kartu / Kotak dengan Glow Border */
+.article-card, .service-list li {
+    background-color: var(--card-bg);
     padding: 25px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-light);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 8px;
+    border: 1px solid rgba(224, 64, 251, 0.1);
+    transition: all var(--transition-speed);
+    position: relative;
+    overflow: hidden;
 }
 
-.article-grid .card:hover {
+.glow-border:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--neon-shadow), 0 8px 15px rgba(0, 0, 0, 0.4);
 }
 
-.article-grid h3 {
-    color: var(--primary-color);
+.article-card h3 {
+    color: var(--neon-purple);
     margin-bottom: 10px;
+    text-shadow: 0 0 3px rgba(224, 64, 251, 0.4);
 }
 
 .read-more-link {
-    display: inline-block;
-    color: var(--secondary-color);
+    color: var(--text-light);
+    text-shadow: 0 0 1px var(--neon-purple);
     font-weight: 600;
-    text-decoration: none;
-    margin-top: 15px;
-    transition: color 0.3s;
+    transition: color var(--transition-speed);
 }
 
 .read-more-link:hover {
-    color: #1e7e34;
+    color: var(--neon-purple);
+    text-shadow: var(--neon-shadow);
 }
 
 /* Service List */
-.service-list {
-    list-style: none;
-    padding: 0;
-}
-
 .service-list li {
-    background-color: #e9ecef;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
+    margin-bottom: 15px;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .service-icon {
-    color: var(--secondary-color);
-    margin-right: 10px;
+    color: var(--neon-purple);
+    margin-right: 15px;
     font-size: 1.2em;
 }
 
-/* --- FOOTER --- */
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    border-top: 1px solid #e9ecef;
-    color: var(--text-secondary);
-}
-
-
-/* --- HALAMAN LOGIN --- */
+/* --- HALAMAN LOGIN (Frosted Glass Effect) --- */
 #login-container {
-    background-color: var(--light-bg);
+    background-color: rgba(20, 20, 42, 0.8); /* Transparansi */
+    backdrop-filter: blur(8px); /* Efek Frosted Glass */
     padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    border: 1px solid rgba(224, 64, 251, 0.4);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 90%;
     max-width: 400px;
+    animation: pulseNeon 3s infinite alternate; /* Animasi Glow */
 }
 
-#login-form input {
+.neon-input {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
-    background-color: #f1f1f1;
-    border: 1px solid #ced4da;
-    color: var(--text-dark);
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(224, 64, 251, 0.5);
+    color: #00ff41; /* Warna teks terminal hijau */
     font-size: 1em;
     border-radius: 5px;
-    transition: border-color 0.3s;
+    transition: all var(--transition-speed);
 }
 
-#login-form input:focus {
-    border-color: var(--primary-color);
+.neon-input:focus {
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
-
-/* Ketika di halaman utama, body tidak perlu center */
-main:not(.hidden) ~ body { 
-    justify-content: flex-start;
-}
-
 
 /* --- MEDIA QUERIES (Responsif) --- */
 @media (max-width: 768px) {
-    
     header {
         flex-direction: column;
         align-items: flex-start;
@@ -275,7 +245,7 @@ main:not(.hidden) ~ body {
     }
 
     header nav {
-        margin-top: 10px;
+        margin-top: 15px;
         width: 100%;
     }
 
@@ -284,7 +254,6 @@ main:not(.hidden) ~ body {
         gap: 10px;
     }
     
-    /* Mengurangi padding atas untuk main content saat di HP */
     main {
         padding-top: 150px; 
     }
@@ -303,7 +272,7 @@ main:not(.hidden) ~ body {
 }
 
 @media (max-width: 480px) {
-    .modern-button {
+    .neon-button-modern {
         width: 100%;
         text-align: center;
     }
