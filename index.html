@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Command Computer Service | Easy Troubleshooting</title>
+    <title>Command Computer Service | Layanan Perbaikan & Troubleshooting</title>
+    
     <link rel="stylesheet" href="style.css"> 
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap" as="style">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <meta name="description" content="Penyedia layanan perbaikan komputer, laptop, dan pemulihan data profesional di Indonesia. Diagnosa cepat, solusi akurat.">
 </head>
 <body>
 
@@ -25,43 +30,73 @@
         
         <header>
             <div class="logo">
-                <span class="neon-highlight">COMMAND</span> COMPUTER SERVICE
+                <span class="neon-highlight"><i class="fas fa-terminal"></i> COMMAND</span> COMPUTER SERVICE
             </div>
             <p class="subtitle">EASY TROUBLESHOOTING</p>
             <nav>
                 <ul>
                     <li><a href="#home" class="nav-link active">Beranda</a></li>
+                    <li><a href="#services" class="nav-link">Layanan</a></li>
+                    <li><a href="#articles" class="nav-link">Artikel</a></li>
                     <li><a href="#profile" class="nav-link">Profile</a></li>
-                    <li><a href="#about" class="nav-link">Tentang</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
                     <li><a href="#contact" class="nav-link">Kontak</a></li>
                 </ul>
             </nav>
         </header>
 
         <section id="home" class="content-section fade-in">
-            <h1 class="main-title">Selamat Datang di Command Computer Service</h1>
+            <h1 class="main-title">Solusi Teknologi Anda Berawal Di Sini</h1>
             <p class="hero-text">
-                Pakar perbaikan perangkat keras dan lunak Anda. Diagnosa Cepat, Solusi Akurat.
+                Kami adalah pakar perbaikan perangkat keras dan lunak Anda. Diagnosa Cepat, Solusi Akurat, dengan harga yang transparan. 
             </p>
-            <a href="#services" class="neon-button-modern large-button">LIHAT LAYANAN KAMI</a>
+            <a href="#services" class="neon-button-modern large-button">JELAJAHI LAYANAN KAMI</a>
+        </section>
+
+        <section id="services" class="content-section hidden fade-in">
+            <h2 class="section-title">Layanan Utama Command Computer Service</h2>
+            <p class="neon-subtitle" style="margin-bottom: 30px;">
+                Kami menawarkan berbagai layanan perbaikan teknologi yang cepat dan andal.
+            </p>
+            <ul class="service-list article-grid">
+                <li class="glow-border article-card">
+                    <span class="service-icon"><i class="fas fa-laptop"></i></span>
+                    <h3>Perbaikan Hardware (PC & Laptop)</h3>
+                    <p>Mulai dari penggantian layar, perbaikan motherboard, hingga *upgrade* komponen.</p>
+                </li>
+                <li class="glow-border article-card">
+                    <span class="service-icon"><i class="fas fa-virus"></i></span>
+                    <h3>Pembersihan Malware & OS Install</h3>
+                    <p>Pembersihan tuntas dari virus, malware, dan instalasi ulang sistem operasi yang bersih.</p>
+                </li>
+                <li class="glow-border article-card">
+                    <span class="service-icon"><i class="fas fa-database"></i></span>
+                    <h3>Pemulihan Data (Data Recovery)</h3>
+                    <p>Memulihkan data penting dari Hard Drive, SSD, atau perangkat penyimpanan yang rusak.</p>
+                </li>
+            </ul>
         </section>
 
         <section id="articles" class="content-section">
-            <h2 class="section-title">Artikel Perbaikan Terbaru</h2>
+            <h2 class="section-title">Artikel & Tips Teknologi Terbaru</h2>
             <div class="article-grid">
-                <article class="article-card glow-border">
+                <article class="article-card glow-border article-item" data-date="2025-10-15">
+                    <img src="https://via.placeholder.com/400x200/1e0a2e/e040fb?text=IMG+BSOD" alt="Gambar Artikel BSOD" class="article-image">
                     <h3>Mengatasi Blue Screen of Death (BSOD)</h3>
-                    <p>Langkah-langkah cepat untuk mendiagnosis dan memperbaiki kesalahan layar biru yang mengganggu produktivitas Anda.</p>
+                    <p class="article-date">15 Oktober 2025</p>
+                    <p>Langkah-langkah cepat untuk mendiagnosis dan memperbaiki kesalahan layar biru yang mengganggu.</p>
                     <a href="#" class="read-more-link">Baca Selengkapnya &rarr;</a>
                 </article>
-                <article class="article-card glow-border">
+                <article class="article-card glow-border article-item" data-date="2025-11-01">
+                    <img src="https://via.placeholder.com/400x200/1e0a2e/e040fb?text=IMG+Gaming" alt="Gambar Artikel Gaming" class="article-image">
                     <h3>Optimasi Kinerja PC Gaming</h3>
+                    <p class="article-date">01 November 2025</p>
                     <p>Tingkatkan FPS dan kurangi lag dengan trik konfigurasi sistem dan *driver* terbaru.</p>
                     <a href="#" class="read-more-link">Baca Selengkapnya &rarr;</a>
                 </article>
-                <article class="article-card glow-border">
+                <article class="article-card glow-border article-item" data-date="2025-12-02">
+                    <img src="https://via.placeholder.com/400x200/1e0a2e/e040fb?text=IMG+Data+Recovery" alt="Gambar Artikel Data" class="article-image">
                     <h3>Penyelamatan Data dari Hard Drive Rusak</h3>
+                    <p class="article-date">02 Desember 2025</p>
                     <p>Metode aman untuk memulihkan file penting dari perangkat penyimpanan yang bermasalah.</p>
                     <a href="#" class="read-more-link">Baca Selengkapnya &rarr;</a>
                 </article>
@@ -69,3 +104,50 @@
         </section>
 
         <section id="profile" class="content-section hidden fade-in">
+            <h2 class="section-title">Profil & Nilai Kami</h2>
+            <div class="article-card glow-border" style="padding: 40px;">
+                <h3 class="neon-highlight">Didirikan oleh Tim Ahli</h3>
+                <p>Command Computer Service didirikan pada tahun 2025 oleh sekelompok profesional IT yang berdedikasi untuk memberikan solusi perbaikan teknologi yang efisien dan jujur.</p>
+                <br>
+                <h3 class="neon-highlight">Misi Kami</h3>
+                <p>Membuat *troubleshooting* teknologi menjadi mudah, cepat, dan dapat diakses oleh semua kalangan masyarakat.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section hidden fade-in">
+            <h2 class="section-title">Hubungi Kami & Temukan Lokasi Kami</h2>
+            
+            <div class="article-grid contact-info">
+                <div class="article-card glow-border contact-text">
+                    <h3>Alamat Kantor Pusat</h3>
+                    <p class="neon-highlight">Jl. Teknologi No. 12, Cyber City, Jakarta</p>
+                    <p class="small-text">Buka: Senin - Sabtu (09.00 - 17.00 WIB)</p>
+                    <hr style="border-color: rgba(224, 64, 251, 0.2); margin: 15px 0;">
+
+                    <div class="social-buttons">
+                        <a href="https://wa.me/628123456789" target="_blank" class="social-button whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="mailto:contact@commandcs.com" class="social-button gmail" title="Gmail"><i class="fas fa-envelope"></i> Gmail</a>
+                        <a href="#" class="social-button blog" title="Blog"><i class="fas fa-blog"></i> Blog</a>
+                        <a href="https://instagram.com/commandcs" target="_blank" class="social-button instagram" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+                </div>
+
+                <div class="article-card glow-border map-container">
+                    <h3 style="margin-bottom: 10px;">Lokasi Perusahaan</h3>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5606612740263!2d106.82022791476935!3d-6.17511009552802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d3701d4b67%3A0x67341e8e503b0c9a!2sNational%20Monument!5e0!3m2!1sen!2sid!4v1677777777777!5m2!1sen!2sid" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Command Computer Service. All Rights Reserved. | <span class="neon-highlight">Coded in Neon Purple.</span></p>
+        </footer>
+
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
