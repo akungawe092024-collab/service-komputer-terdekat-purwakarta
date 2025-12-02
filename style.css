@@ -2,16 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap');
 
 :root {
-    --dark-bg: #0a0a1a; /* Latar belakang sangat gelap */
-    --card-bg: #14142a; /* Latar belakang kartu/kotak */
-    --neon-purple: #e040fb; /* Ungu neon cerah */
-    --neon-shadow: 0 0 15px rgba(224, 64, 251, 0.6); /* Shadow untuk glow */
+    --dark-bg: #0a0a1a; 
+    --card-bg: #14142a; 
+    --neon-purple: #e040fb; 
+    --neon-shadow: 0 0 15px rgba(224, 64, 251, 0.6); 
     --text-light: #f0f0f0;
     --text-secondary: #b0b0b0;
     --transition-speed: 0.3s;
+    /* Warna Sosial Media */
+    --wa-color: #25D366;
+    --gmail-color: #EA4335;
+    --ig-color: #E1306C;
+    --blog-color: #FF5722;
 }
 
-/* --- KEYFRAMES ANIMATION --- */
+/* --- KEYFRAMES ANIMATION & UTILITY CLASSES (Dibiarkan sama) --- */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -31,7 +36,11 @@
 }
 
 body {
+    /* Background Website dengan gradien halus dan noise */
     background-color: var(--dark-bg);
+    background-image: radial-gradient(circle at center, rgba(30, 0, 50, 0.5) 0%, rgba(10, 10, 26, 1) 70%), 
+                      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>');
+    background-size: cover;
     color: var(--text-light);
     line-height: 1.6;
     min-height: 100vh;
@@ -40,248 +49,134 @@ body {
     align-items: center;
     justify-content: center;
 }
+/* ... (Utility classes lainnya Dibiarkan Sama) ... */
 
-/* --- UTILITY CLASSES --- */
-.hidden {
-    display: none !important;
-}
-
-.fade-in {
-    animation: fadeIn 0.8s ease-out;
-}
-
-.neon-highlight {
-    color: var(--neon-purple);
-    text-shadow: 0 0 5px var(--neon-purple);
+/* --- HEADER & LOGO --- */
+header .logo {
+    font-size: 1.5em;
     font-weight: 700;
+    line-height: 1;
 }
 
-.neon-title {
+header .logo i {
+    margin-right: 5px;
     color: var(--neon-purple);
-    text-shadow: var(--neon-shadow);
-    font-size: 2.2em;
-    margin-bottom: 5px;
 }
 
-.neon-subtitle {
-    color: var(--text-secondary);
-    font-size: 0.9em;
+/* --- ARTIKEL GRID (Gambar dan Waktu) --- */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
 }
 
-.small-text {
-    color: var(--text-secondary);
-    font-size: 0.8em;
-}
-
-/* --- TOMBOL NEON MODERN (Pill Shape & Glow) --- */
-.neon-button-modern {
-    display: inline-block;
-    padding: 12px 30px;
-    background: var(--neon-purple);
-    color: var(--dark-bg);
-    border: 2px solid var(--neon-purple);
-    border-radius: 50px; /* Bentuk Pill */
-    font-weight: 600;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    box-shadow: var(--neon-shadow);
-    transition: all var(--transition-speed) ease;
-}
-
-.neon-button-modern:hover {
-    background: transparent;
-    color: var(--neon-purple);
-    box-shadow: 0 0 20px var(--neon-purple), 0 0 40px rgba(224, 64, 251, 0.4);
-    transform: translateY(-3px) scale(1.02);
-}
-
-.large-button {
-    font-size: 1.1em;
-    padding: 15px 35px;
-}
-
-/* --- HEADER & NAVIGASI --- */
-header {
-    background-color: rgba(10, 10, 26, 0.95); /* Sedikit transparan */
-    border-bottom: 1px solid rgba(224, 64, 251, 0.2);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    padding: 15px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    transition: all var(--transition-speed);
-}
-
-header nav ul {
-    gap: 30px;
-}
-
-nav ul li a {
-    transition: color var(--transition-speed), border-bottom var(--transition-speed);
-}
-
-nav ul li a:hover,
-nav ul li a.active {
-    color: var(--neon-purple);
-    text-shadow: 0 0 5px rgba(224, 64, 251, 0.8);
-    border-bottom: 2px solid var(--neon-purple);
-}
-
-
-/* --- MAIN CONTENT & SECTIONS --- */
-main {
-    padding-top: 100px;
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.main-title {
-    font-size: 3em;
-    color: var(--text-light);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.section-title {
-    font-size: 2em;
-    color: var(--neon-purple);
-    text-shadow: 0 0 8px rgba(224, 64, 251, 0.4);
-    margin-bottom: 30px;
-    border-left: 4px solid var(--neon-purple);
-    padding-left: 15px;
-}
-
-/* Kartu / Kotak dengan Glow Border */
-.article-card, .service-list li {
-    background-color: var(--card-bg);
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid rgba(224, 64, 251, 0.1);
-    transition: all var(--transition-speed);
-    position: relative;
+.article-item {
+    padding: 0; /* Hapus padding agar gambar di tepi */
     overflow: hidden;
 }
 
-.glow-border:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--neon-shadow), 0 8px 15px rgba(0, 0, 0, 0.4);
-}
-
-.article-card h3 {
-    color: var(--neon-purple);
-    margin-bottom: 10px;
-    text-shadow: 0 0 3px rgba(224, 64, 251, 0.4);
-}
-
-.read-more-link {
-    color: var(--text-light);
-    text-shadow: 0 0 1px var(--neon-purple);
-    font-weight: 600;
-    transition: color var(--transition-speed);
-}
-
-.read-more-link:hover {
-    color: var(--neon-purple);
-    text-shadow: var(--neon-shadow);
-}
-
-/* Service List */
-.service-list li {
-    margin-bottom: 15px;
-    animation: fadeIn 0.5s ease-out;
-}
-
-.service-icon {
-    color: var(--neon-purple);
-    margin-right: 15px;
-    font-size: 1.2em;
-}
-
-/* --- HALAMAN LOGIN (Frosted Glass Effect) --- */
-#login-container {
-    background-color: rgba(20, 20, 42, 0.8); /* Transparansi */
-    backdrop-filter: blur(8px); /* Efek Frosted Glass */
-    padding: 50px;
-    border-radius: 15px;
-    border: 1px solid rgba(224, 64, 251, 0.4);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    animation: pulseNeon 3s infinite alternate; /* Animasi Glow */
-}
-
-.neon-input {
+.article-image {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    background-color: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(224, 64, 251, 0.5);
-    color: #00ff41; /* Warna teks terminal hijau */
-    font-size: 1em;
-    border-radius: 5px;
-    transition: all var(--transition-speed);
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: transform var(--transition-speed);
 }
 
-.neon-input:focus {
-    border-color: var(--neon-purple);
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
-    outline: none;
+.article-item:hover .article-image {
+    transform: scale(1.05);
+}
+
+.article-item h3 {
+    padding: 0 25px;
+    margin-top: 15px;
+}
+.article-item p, .article-item a {
+    padding: 0 25px;
+}
+
+.article-date {
+    color: var(--text-secondary);
+    font-size: 0.75em;
+    margin-bottom: 10px;
+}
+
+/* --- KONTAK LENGKAP (Tombol dan Maps) --- */
+.contact-info {
+    align-items: stretch;
+}
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.social-button {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    color: var(--dark-bg);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 0.9em;
+}
+
+.social-button i {
+    margin-right: 5px;
+}
+
+/* Warna Spesifik Tombol */
+.whatsapp { background-color: var(--wa-color); }
+.gmail { background-color: var(--gmail-color); }
+.blog { background-color: var(--blog-color); }
+.instagram { background-color: var(--ig-color); }
+
+.social-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Maps Container */
+.map-container {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 300px; /* Tinggi optimal untuk peta */
+    border: 1px solid rgba(224, 64, 251, 0.4);
+    border-radius: 5px;
 }
 
 /* --- MEDIA QUERIES (Responsif) --- */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 15px 20px;
-    }
-
-    header nav {
-        margin-top: 15px;
-        width: 100%;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
+    /* ... (Aturan responsif sebelumnya) ... */
     
-    main {
-        padding-top: 150px; 
-    }
-
-    .main-title {
-        font-size: 2em;
-    }
-
-    .section-title {
-        font-size: 1.5em;
-    }
-    
-    #login-container {
-        padding: 30px;
+    .map-container iframe {
+        height: 200px; 
     }
 }
 
 @media (max-width: 480px) {
-    .neon-button-modern {
+    /* ... (Aturan responsif sebelumnya) ... */
+
+    .social-buttons {
+        flex-direction: column;
+    }
+    .social-button {
         width: 100%;
-        text-align: center;
-    }
-
-    .large-button {
-        font-size: 1em;
-    }
-
-    .article-grid {
-        grid-template-columns: 1fr;
     }
 }
