@@ -1,0 +1,95 @@
+/* Import font untuk tampilan "hacker/mono" */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+    --dark-bg: #0a0a1a; /* Warna latar belakang sangat gelap */
+    --neon-purple: #bb00ff; /* Warna neon utama */
+    --neon-purple-shadow: #bb00ff80; /* Bayangan neon (lebih transparan untuk kinerja) */
+    --text-light: #e0e0e0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Mono', monospace; 
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Posisikan login di tengah horizontal */
+    align-items: center; /* Posisikan login di tengah vertikal */
+}
+
+/* === UTILITY CLASSES (Neon Effect) === */
+.neon-text-purple {
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px var(--neon-purple-shadow), 0 0 10px var(--neon-purple);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.neon-text-small {
+    color: var(--neon-purple);
+    text-shadow: 0 0 3px var(--neon-purple-shadow);
+    font-size: 0.8em;
+    margin-top: 15px;
+}
+
+.neon-button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--neon-purple);
+    border: none;
+    color: var(--dark-bg);
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--neon-purple-shadow);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.neon-button:hover {
+    background-color: #ff00ff;
+    box-shadow: 0 0 20px var(--neon-purple), 0 0 40px #ff00ff;
+}
+
+/* === KOTAK LOGIN === */
+#login-container {
+    background-color: #1a1a30; /* Latar belakang kotak login */
+    padding: 50px 40px;
+    border: 3px solid var(--neon-purple);
+    box-shadow: 0 0 20px var(--neon-purple);
+    text-align: center;
+    width: 90%;
+    max-width: 380px;
+    border-radius: 5px;
+}
+
+#login-container h2 {
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+#login-container p {
+    margin-bottom: 25px;
+    color: var(--text-secondary);
+}
+
+/* === INPUT FORM === */
+#login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #000;
+    border: 1px solid var(--neon-purple-shadow);
+    color: #00ff41; /* Warna teks input ala terminal hijau */
+    font-size: 1em;
+}
+
+#login-form input::placeholder {
+    color: #00ff4180;
+}

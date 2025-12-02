@@ -1,0 +1,118 @@
+/* Import font untuk tampilan "hacker/mono" */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+    --dark-bg: #0a0a1a; 
+    --neon-purple: #bb00ff; 
+    --neon-purple-shadow: #bb00ff80; /* Dibuat lebih transparan untuk kinerja */
+    --text-light: #e0e0e0;
+    --text-secondary: #9a9a9a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Mono', monospace; 
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+    min-height: 100vh;
+    /* Display flex hanya di halaman login agar konten utama bisa scrolling */
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- UTILITY CLASSES & OPTIMASI NEON --- */
+.hidden {
+    display: none !important;
+}
+
+.neon-text-purple {
+    color: var(--neon-purple);
+    /* Shadow dikurangi */
+    text-shadow: 0 0 4px var(--neon-purple-shadow);
+}
+
+.neon-text-small {
+    color: var(--neon-purple);
+    text-shadow: 0 0 2px var(--neon-purple-shadow);
+    font-size: 0.9em;
+}
+
+.neon-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid var(--neon-purple);
+    color: var(--neon-purple);
+    box-shadow: 0 0 5px var(--neon-purple-shadow); /* Shadow dikurangi */
+    /* ... (properti lainnya) */
+}
+
+.neon-button:hover {
+    background-color: var(--neon-purple);
+    color: var(--dark-bg);
+    box-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple-shadow);
+}
+
+
+/* --- HEADER & NAVIGASI --- */
+header {
+    /* ... (properti lainnya) */
+    box-shadow: 0 0 10px var(--neon-purple-shadow); /* Shadow dikurangi */
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--neon-purple);
+    text-shadow: 0 0 3px var(--neon-purple-shadow); /* Shadow dikurangi */
+    border-bottom: 2px solid var(--neon-purple);
+}
+
+
+/* --- MAIN CONTENT & SECTIONS --- */
+main {
+    padding-top: 120px; /* Diperbesar karena header fixed */
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    /* Pastikan main tidak terpusat di tengah agar bisa scrolling */
+    display: block; 
+}
+
+h1 {
+    font-size: 2.5em;
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px var(--neon-purple-shadow); /* Shadow dikurangi */
+}
+
+/* --- Animasi Hacker Sederhana --- */
+#hacker-code {
+    background-color: #000000;
+    color: #00ff41; 
+    border: 1px solid var(--neon-purple);
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.4); /* Shadow dikurangi */
+    animation: blink-cursor 1s step-end infinite;
+}
+
+/* --- HALAMAN LOGIN --- */
+#login-container {
+    background-color: #1a1a30;
+    padding: 40px;
+    border: 3px solid var(--neon-purple);
+    box-shadow: 0 0 15px var(--neon-purple); /* Shadow dikurangi */
+}
+
+/* Ketika di halaman utama, body tidak perlu center */
+body:not(#login-container) { 
+    justify-content: flex-start;
+}
