@@ -1,118 +1,318 @@
-/* Import font untuk tampilan "hacker/mono" */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+/* Import font untuk tampilan modern */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
 :root {
-    --dark-bg: #0a0a1a; 
-    --neon-purple: #bb00ff; 
-    --neon-purple-shadow: #bb00ff80; /* Dibuat lebih transparan untuk kinerja */
-    --text-light: #e0e0e0;
-    --text-secondary: #9a9a9a;
+    --dark-bg: #f8f9fa; /* Latar belakang terang untuk kesan modern */
+    --light-bg: #ffffff;
+    --primary-color: #007bff; /* Biru cerah sebagai warna utama */
+    --primary-gradient: linear-gradient(45deg, #007bff, #00c6ff); /* Gradien hidup */
+    --secondary-color: #28a745; /* Hijau */
+    --text-dark: #343a40;
+    --text-secondary: #6c757d;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 25px rgba(0, 123, 255, 0.3);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto Mono', monospace; 
+    font-family: 'Inter', sans-serif; /* Mengganti font */
 }
 
 body {
     background-color: var(--dark-bg);
-    color: var(--text-light);
+    color: var(--text-dark);
     line-height: 1.6;
     min-height: 100vh;
-    /* Display flex hanya di halaman login agar konten utama bisa scrolling */
-    display: flex; 
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.3s;
 }
 
-/* --- UTILITY CLASSES & OPTIMASI NEON --- */
+/* --- UTILITY CLASSES --- */
 .hidden {
     display: none !important;
 }
 
-.neon-text-purple {
-    color: var(--neon-purple);
-    /* Shadow dikurangi */
-    text-shadow: 0 0 4px var(--neon-purple-shadow);
+.modern-highlight {
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
-.neon-text-small {
-    color: var(--neon-purple);
-    text-shadow: 0 0 2px var(--neon-purple-shadow);
+.modern-header {
+    color: var(--text-dark);
+    font-size: 2em;
+}
+
+.subtitle {
+    color: var(--text-secondary);
     font-size: 0.9em;
 }
 
-.neon-button {
+.small-text {
+    color: var(--text-secondary);
+    font-size: 0.8em;
+}
+
+/* --- TOMBOL MODERN (Modern Button) --- */
+.modern-button {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: transparent;
-    border: 2px solid var(--neon-purple);
-    color: var(--neon-purple);
-    box-shadow: 0 0 5px var(--neon-purple-shadow); /* Shadow dikurangi */
-    /* ... (properti lainnya) */
+    padding: 12px 25px;
+    background: var(--primary-gradient);
+    color: var(--light-bg);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-light);
+    transition: all 0.3s ease;
 }
 
-.neon-button:hover {
-    background-color: var(--neon-purple);
-    color: var(--dark-bg);
-    box-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple-shadow);
+.modern-button:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
 }
 
+.large-button {
+    font-size: 1.1em;
+    padding: 15px 30px;
+}
 
 /* --- HEADER & NAVIGASI --- */
 header {
-    /* ... (properti lainnya) */
-    box-shadow: 0 0 10px var(--neon-purple-shadow); /* Shadow dikurangi */
+    background-color: var(--light-bg);
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: var(--shadow-light);
+    width: 100%;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     top: 0;
     z-index: 100;
+    flex-wrap: wrap; /* Penting untuk responsif */
+}
+
+header .logo {
+    font-size: 1.5em;
+    font-weight: 800;
+    line-height: 1;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    padding: 8px 0;
+    transition: color 0.3s, border-bottom 0.3s;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-    color: var(--neon-purple);
-    text-shadow: 0 0 3px var(--neon-purple-shadow); /* Shadow dikurangi */
-    border-bottom: 2px solid var(--neon-purple);
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
 }
 
 
 /* --- MAIN CONTENT & SECTIONS --- */
 main {
-    padding-top: 120px; /* Diperbesar karena header fixed */
+    padding-top: 100px; /* Offset header */
     width: 90%;
     max-width: 1200px;
     margin: auto;
-    /* Pastikan main tidak terpusat di tengah agar bisa scrolling */
     display: block; 
 }
 
-h1 {
-    font-size: 2.5em;
-    color: var(--neon-purple);
-    text-shadow: 0 0 5px var(--neon-purple-shadow); /* Shadow dikurangi */
+.content-section {
+    padding: 40px 0;
+    margin-bottom: 20px;
 }
 
-/* --- Animasi Hacker Sederhana --- */
-#hacker-code {
-    background-color: #000000;
-    color: #00ff41; 
-    border: 1px solid var(--neon-purple);
-    box-shadow: 0 0 5px rgba(0, 255, 65, 0.4); /* Shadow dikurangi */
-    animation: blink-cursor 1s step-end infinite;
+.main-title {
+    font-size: 3em;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: 800;
 }
+
+.hero-text {
+    font-size: 1.25em;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 15px;
+}
+
+/* Artikel Grid (untuk responsif) */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.article-grid .card {
+    background-color: var(--light-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.article-grid .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.article-grid h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.read-more-link {
+    display: inline-block;
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: color 0.3s;
+}
+
+.read-more-link:hover {
+    color: #1e7e34;
+}
+
+/* Service List */
+.service-list {
+    list-style: none;
+    padding: 0;
+}
+
+.service-list li {
+    background-color: #e9ecef;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.service-icon {
+    color: var(--secondary-color);
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #e9ecef;
+    color: var(--text-secondary);
+}
+
 
 /* --- HALAMAN LOGIN --- */
 #login-container {
-    background-color: #1a1a30;
-    padding: 40px;
-    border: 3px solid var(--neon-purple);
-    box-shadow: 0 0 15px var(--neon-purple); /* Shadow dikurangi */
+    background-color: var(--light-bg);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+#login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ced4da;
+    color: var(--text-dark);
+    font-size: 1em;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+#login-form input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
 /* Ketika di halaman utama, body tidak perlu center */
-body:not(#login-container) { 
+main:not(.hidden) ~ body { 
     justify-content: flex-start;
+}
+
+
+/* --- MEDIA QUERIES (Responsif) --- */
+@media (max-width: 768px) {
+    
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+
+    header nav {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Mengurangi padding atas untuk main content saat di HP */
+    main {
+        padding-top: 150px; 
+    }
+
+    .main-title {
+        font-size: 2em;
+    }
+
+    .section-title {
+        font-size: 1.5em;
+    }
+    
+    #login-container {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modern-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .large-button {
+        font-size: 1em;
+    }
+
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
 }
