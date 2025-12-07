@@ -1,118 +1,58 @@
+// File: script.js
+
 document.addEventListener('DOMContentLoaded', () => {
-    // === Ambil Elemen Kunci ===
-    const loginForm = document.getElementById('login-form');
-    const loginContainer = document.getElementById('login-container');
-    const mainContent = document.getElementById('main-content');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const contentSections = document.querySelectorAll('.content-section');
-    const header = document.querySelector('header');
-    
-    // Fungsi untuk mendapatkan tinggi header dinamis + offset (padding/margin)
-    const getHeaderOffset = () => {
-         // Tambah 30px offset agar konten tidak tertutup header fixed
-         return header ? header.offsetHeight + 30 : 120; 
-    };
-    
-    // Pastikan halaman login terlihat saat pertama kali dimuat
-    if (loginContainer) {
-        loginContainer.classList.remove('hidden'); 
-    }
+    console.log('Script.js dimuat. Situs siap!');
 
-    // === 1. LOGIKA LOGIN & Transisi ===
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const kelurahanInput = document.getElementById('kelurahan').value.trim();
-            
-            if (kelurahanInput !== '') { 
-                // Sembunyikan container login
-                loginContainer.classList.add('hidden');
-                
-                // Tampilkan konten utama
-                if (mainContent) {
-                    mainContent.classList.remove('hidden');
-                    // Tampilkan section 'home' dan 'articles' (bagian dari Beranda)
-                    showSection('home'); 
-                    
-                    // Pastikan link Beranda menjadi aktif
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    document.querySelector('a[href="#home"]').classList.add('active');
-                }
-                
-                // Gulir ke atas halaman setelah login
-                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    const body = document.body;
+    
+    // Tambahkan kelas setelah sedikit jeda untuk inisiasi transisi/animasi CSS
+    setTimeout(() => {
+        body.classList.add('loaded');
+    }, 100); 
+
+    // Kode JavaScript kustom dapat ditambahkan di sini.
+    
+function toggleKonten() {
+            // Dapatkan elemen konten dan tombol berdasarkan ID
+            var konten = document.getElementById("kontenLengkap");
+            var tombol = document.getElementById("tombolToggle");
+
+            // Periksa apakah konten saat ini disembunyikan
+            if (konten.style.display === "none" || konten.style.display === "") {
+                // Jika disembunyikan, tampilkan konten dan ubah teks tombol
+                konten.style.display = "block";
+                tombol.innerHTML = "Sembunyikan";
             } else {
-                alert('Mohon masukkan Kelurahan Anda untuk melanjutkan.');
+                // Jika ditampilkan, sembunyikan konten dan ubah teks tombol kembali
+                konten.style.display = "none";
+                tombol.innerHTML = "Baca Selengkapnya";
             }
-        });
-    }
-
-    // === 2. NAVIGASI Halaman (SPA) ===
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            navLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-            
-            const targetId = link.getAttribute('href').substring(1);
-            showSection(targetId);
-            
-            // Gulir ke posisi section dengan offset header fixed
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                 window.scrollTo({
-                     top: targetSection.offsetTop - getHeaderOffset(), // Gunakan offset dinamis
-                     behavior: 'smooth'
-                 });
-            }
-        });
-    });
-
-    // === 3. FUNGSI MENAMPILKAN SECTION & SORTING ARTIKEL ===
-    function showSection(id) {
-        // Sembunyikan semua section
-        contentSections.forEach(section => {
-            section.classList.add('hidden');
-        });
-
-        // Tampilkan section target
-        const targetSection = document.getElementById(id);
-        if (targetSection) {
-            targetSection.classList.remove('hidden');
         }
-        
-        // Logika Khusus: Jika di "Beranda" atau "Artikel", tampilkan bagian "Artikel"
-        if (id === 'home' || id === 'articles') {
-             const articlesSection = document.getElementById('articles');
-             if (articlesSection) {
-                 articlesSection.classList.remove('hidden');
-                 sortArticlesByDate('ascending'); // Mengurutkan dari Terlama ke Terbaru
-             }
-        }
-    }
+        // PENTING: Untuk memastikan konten awalnya tersembunyi
+        // Kita juga bisa menggunakan CSS untuk menyembunyikannya secara default (seperti di <style>).
+        // Fungsi ini hanya akan dipanggil saat tombol diklik.
     
-    // Fungsi Sorting Artikel berdasarkan data-date (Terlama ke Terbaru)
-    function sortArticlesByDate(order = 'ascending') {
-        const articleGrid = document.querySelector('#articles .article-grid');
-        if (!articleGrid) return;
-        
-        const articles = Array.from(articleGrid.querySelectorAll('.article-item'));
 
-        articles.sort((a, b) => {
-            const dateA = new Date(a.getAttribute('data-date'));
-            const dateB = new Date(b.getAttribute('data-date'));
-            
-            // Urutan Ascending (Terlama ke Terbaru)
-            return order === 'ascending' ? dateA - dateB : dateB - dateA;
-        });
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-        // Hapus elemen lama dan tambahkan yang sudah diurutkan
-        articles.forEach(article => articleGrid.appendChild(article));
-    }
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyB-2TAsHmukE04GySya4I_MNbIhafbNfGA",
+    authDomain: "blog-fdc54.firebaseapp.com",
+    projectId: "blog-fdc54",
+    storageBucket: "blog-fdc54.firebasestorage.app",
+    messagingSenderId: "593493999764",
+    appId: "1:593493999764:web:f8e745c24a9e9c0eed3481",
+    measurementId: "G-553SB1VFQK"
+  };
 
-    // Inisialisasi: Sembunyikan konten utama saat load
-    if (mainContent) {
-        mainContent.classList.add('hidden');
-    }
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+    
 });
